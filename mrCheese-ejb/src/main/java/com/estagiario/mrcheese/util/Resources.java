@@ -16,6 +16,9 @@
  */
 package com.estagiario.mrcheese.util;
 
+import com.estagiario.mrcheese.repository.BasicRepository;
+import com.estagiario.mrcheese.repository.ClienteRepository;
+
 import java.util.logging.Logger;
 
 import javax.enterprise.inject.Produces;
