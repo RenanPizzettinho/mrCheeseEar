@@ -16,7 +16,7 @@ public abstract class BasicRepository<T, I extends Serializable> {
     protected BasicRepository() {
     }
 
-    protected BasicRepository(Class<T> tClass) {
+    BasicRepository(Class<T> tClass) {
         this.tClass = tClass;
     }
 
