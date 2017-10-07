@@ -2,6 +2,7 @@ package com.estagiario.mrcheese.model;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,11 +15,16 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @JoinColumn(name = "ID_CLIENTE", foreignKey = @ForeignKey(name = "FK_PEDIDOS_CLIENTES"))
     private Cliente cliente;
 
-    @OneToMany
-    private Set<Queijo> queijos = new HashSet<>();
+    @Column(name = "DATA")
+    private LocalDate data;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "ID_PEDIDO", foreignKey = @ForeignKey(name = "FK_PEDIDOS_ITENS"))
+    private Set<Item> itens = new HashSet<>();
 
     public Pedido() {
     }
@@ -39,12 +45,11 @@ public class Pedido {
         this.cliente = cliente;
     }
 
-    public Set<Queijo> getQueijos() {
-        return queijos;
+    public Set<Item> getItens() {
+        return itens;
     }
 
-    public void setQueijos(Set<Queijo> queijos) {
-        this.queijos = queijos;
+    public void setItens(Set<Item> itens) {
+        this.itens = itens;
     }
-
 }

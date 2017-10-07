@@ -3,6 +3,7 @@ package com.estagiario.mrcheese.model;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
@@ -16,7 +17,8 @@ public class Cliente {
     private Long id;
 
     @NotEmpty
-    @Column(name = "NOME")
+    @Size(max = 255)
+    @Column(name = "NOME", length = 255)
     private String nome;
 
     public Cliente() {

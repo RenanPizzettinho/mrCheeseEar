@@ -39,6 +39,10 @@
         </license>
     </licenses>
 
+    <properties>
+        <querydsl.version>4.1.0</querydsl.version>
+    </properties>
+
     <dependencies>
 
         <!-- Declare the APIs we depend on and need for compilation. All of 
@@ -97,6 +101,16 @@
             <scope>test</scope>               
         </dependency>
 
+        <dependency>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -108,6 +122,14 @@
                 <configuration>
                     <!-- Tell Maven we are using EJB 3.1 -->
                     <ejbVersion>3.1</ejbVersion>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
         </plugins>
@@ -132,6 +154,30 @@
                             <skip>true</skip>
                         </configuration>
                     </plugin>
+
+                    <plugin>
+                        <groupId>com.mysema.maven</groupId>
+                        <artifactId>apt-maven-plugin</artifactId>
+                        <version>1.1.3</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>process</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>target/generated-sources/java</outputDirectory>
+                                    <processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.querydsl</groupId>
+                                <artifactId>querydsl-apt</artifactId>
+                                <version>${querydsl.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
                 </plugins>
             </build>
         </profile>
@@ -147,20 +193,6 @@
                 <dependency>
                     <groupId>org.wildfly</groupId>
                     <artifactId>wildfly-arquillian-container-managed</artifactId>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-
-        <profile>
-            <!-- An optional Arquillian testing profile that executes tests 
-                in a remote WildFly instance -->
-            <!-- Run with: mvn clean test -Parq-wildfly-remote -->
-            <id>arq-wildfly-remote</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.wildfly</groupId>
-                    <artifactId>wildfly-arquillian-container-remote</artifactId>
                     <scope>test</scope>
                 </dependency>
             </dependencies>

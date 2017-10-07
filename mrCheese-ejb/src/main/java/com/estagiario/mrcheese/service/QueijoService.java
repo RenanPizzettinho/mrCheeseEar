@@ -15,19 +15,11 @@ public class QueijoService {
     }
 
     public Queijo merge(Long id, Queijo queijo){
-        if (!id.equals(queijo.getId())){
-
-        }
         return repository.merge(queijo);
     }
 
     public void remove(Long id){
         repository.remove(id);
-    }
-
-    public Queijo vender(Queijo queijo){
-        queijo.setVendido(Boolean.TRUE);
-        return repository.merge(queijo);
     }
 
 }

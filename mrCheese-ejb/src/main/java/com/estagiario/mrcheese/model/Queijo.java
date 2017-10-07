@@ -1,6 +1,7 @@
 package com.estagiario.mrcheese.model;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "QUEIJOS")
@@ -11,14 +12,12 @@ public class Queijo {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_QUEIJOS")
     private Long id;
 
-    @Column(name = "PESO")
-    private Double peso;
+    @Column(name = "PESO", length = 15, scale = 2)
+    private BigDecimal peso;
 
-    @Column(name = "VALOR")
-    private Double valor;
-
-    @Column
-    private Boolean vendido;
+    //TODO: definir oq ira compor o lote.
+    @Column(name = "LOTE")
+    private String lote;
 
     public Queijo() {
     }
@@ -31,27 +30,4 @@ public class Queijo {
         this.id = id;
     }
 
-    public Double getPeso() {
-        return peso;
-    }
-
-    public void setPeso(Double peso) {
-        this.peso = peso;
-    }
-
-    public Double getValor() {
-        return valor;
-    }
-
-    public void setValor(Double valor) {
-        this.valor = valor;
-    }
-
-    public void setVendido(Boolean vendido) {
-        this.vendido = vendido;
-    }
-
-    public Boolean getVendido() {
-        return vendido;
-    }
 }
