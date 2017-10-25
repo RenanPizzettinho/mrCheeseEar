@@ -15,4 +15,5 @@ public class ClienteRepository extends BasicRepository<Cliente, Long> {
     public List<Cliente> findAll(){
         return super.findAll("SELECT c FROM Cliente c ORDER BY c.id");
     }
+
 }
