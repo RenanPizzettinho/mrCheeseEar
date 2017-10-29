@@ -13,11 +13,11 @@ public abstract class BasicRepository<T, I extends Serializable> {
 
     private Class<T> tClass;
 
-    protected BasicRepository() {
-    }
-
     BasicRepository(Class<T> tClass) {
         this.tClass = tClass;
+    }
+
+    protected BasicRepository() {
     }
 
     public <T> T persist(T entity) {

@@ -10,7 +10,7 @@
         <driver-class>org.postgresql.Driver</driver-class>
         <security>
             <user-name>postgres</user-name>
-            <password>admin</password>
+            <password>postgres</password>
         </security>
     </datasource>
 </datasources>

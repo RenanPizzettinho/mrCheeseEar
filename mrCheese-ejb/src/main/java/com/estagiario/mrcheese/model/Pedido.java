@@ -22,7 +22,7 @@ public class Pedido {
     @Column(name = "DATA")
     private LocalDate data;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumn(name = "ID_PEDIDO", foreignKey = @ForeignKey(name = "FK_PEDIDOS_ITENS"))
     private Set<Item> itens = new HashSet<>();
 
@@ -51,5 +51,13 @@ public class Pedido {
 
     public void setItens(Set<Item> itens) {
         this.itens = itens;
+    }
+
+    public String getData() {
+        return data.toString();
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
     }
 }

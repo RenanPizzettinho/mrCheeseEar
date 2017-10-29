@@ -11,6 +11,9 @@ public class PedidoRepository extends BasicRepository<Pedido, Long> {
     }
 
     public List<Pedido> findAll() {
-        return super.findAll("SELECT p FROM Pedido ORDER BY p.id");
+
+        return super.findAll("SELECT p FROM Pedido p ORDER BY p.id");
+
     }
+
 }

@@ -15,7 +15,6 @@ public class Queijo {
     @Column(name = "PESO", length = 15, scale = 2)
     private BigDecimal peso;
 
-    //TODO: definir oq ira compor o lote.
     @Column(name = "LOTE")
     private String lote;
 
@@ -30,4 +29,19 @@ public class Queijo {
         this.id = id;
     }
 
+    public BigDecimal getPeso() {
+        return peso;
+    }
+
+    public void setPeso(BigDecimal peso) {
+        this.peso = peso;
+    }
+
+    public String getLote() {
+        return lote;
+    }
+
+    public void setLote(String lote) {
+        this.lote = lote;
+    }
 }

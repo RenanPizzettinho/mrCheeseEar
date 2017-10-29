@@ -21,9 +21,17 @@ public class PedidoResource {
 
     @GET
     @Path("{id}")
-    public Response find(@PathParam("id") Long id){
+    public Response find(@PathParam("id") Long id) {
+
         return Response.ok(repository.find(id)).build();
+
     }
 
+    @GET
+    public Response findAll() {
+
+        return Response.ok(repository.findAll()).build();
+
+    }
 
 }

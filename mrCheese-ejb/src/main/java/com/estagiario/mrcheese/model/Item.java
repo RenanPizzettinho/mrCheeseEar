@@ -19,11 +19,30 @@ public class Item {
     @Column(name = "VALOR", length = 15, scale = 2)
     private BigDecimal valor;
 
+    public Item() {
+    }
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Queijo getQueijo() {
+        return queijo;
+    }
+
+    public void setQueijo(Queijo queijo) {
+        this.queijo = queijo;
+    }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
     }
 }
