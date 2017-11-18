@@ -44,4 +44,10 @@ public abstract class BasicRepository<T, I extends Serializable> {
         return typedQuery.getResultList();
     }
 
+    public T findOne(String query){
+        TypedQuery<T> typedQuery = entityManager.createQuery(query, tClass);
+        return typedQuery.getSingleResult();
+    }
+
+
 }
