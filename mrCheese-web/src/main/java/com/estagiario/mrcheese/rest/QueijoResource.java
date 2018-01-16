@@ -1,6 +1,7 @@
 package com.estagiario.mrcheese.rest;
 
 import com.estagiario.mrcheese.model.Queijo;
+import com.estagiario.mrcheese.model.SituacaoQueijo;
 import com.estagiario.mrcheese.repository.QueijoRepository;
 import com.estagiario.mrcheese.service.QueijoService;
 
@@ -9,6 +10,8 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import static com.estagiario.mrcheese.model.SituacaoQueijo.*;
 
 @Path("/queijo")
 @RequestScoped
@@ -30,6 +33,15 @@ public class QueijoResource {
     @GET
     public Response findAll() {
         return Response.ok(repository.findAll()).build();
+    }
+
+
+    @GET
+    @Path("/status")
+    public Response status(@QueryParam("status")SituacaoQueijo situacaoQueijo){
+
+        return Response.ok(repository.byStatus(situacaoQueijo)).build();
+
     }
 
     @POST

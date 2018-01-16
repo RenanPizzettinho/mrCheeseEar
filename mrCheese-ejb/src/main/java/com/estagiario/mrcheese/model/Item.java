@@ -17,7 +17,7 @@ public class Item {
     private Queijo queijo;
 
     @Column(name = "VALOR", length = 15, scale = 2)
-    private BigDecimal valor;
+    private Double valor;
 
     public Item() {
     }
@@ -38,11 +38,11 @@ public class Item {
         this.queijo = queijo;
     }
 
-    public BigDecimal getValor() {
+    public Double getValor() {
         return valor;
     }
 
-    public void setValor(BigDecimal valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
     }
 }

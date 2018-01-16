@@ -25,6 +25,11 @@ public class ConfiguracaoPrecoResource {
     @PUT
     @Path("{id}")
     public Response update(@PathParam("id") Long id, ConfiguracaoPreco configuracaoPreco){
-        return Response.ok(repository.merge(configuracaoPreco)).build();
+
+
+        ConfiguracaoPreco merge = repository.merge(configuracaoPreco);
+
+        return Response.ok(merge).build();
+
     }
 }

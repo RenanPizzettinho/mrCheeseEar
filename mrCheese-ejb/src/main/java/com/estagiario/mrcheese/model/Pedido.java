@@ -3,8 +3,11 @@ package com.estagiario.mrcheese.model;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+import static com.estagiario.mrcheese.model.SituacaoPedido.EM_ABERTO;
 
 @Entity
 @XmlRootElement
@@ -19,12 +22,16 @@ public class Pedido {
     @JoinColumn(name = "ID_CLIENTE", foreignKey = @ForeignKey(name = "FK_PEDIDOS_CLIENTES"))
     private Cliente cliente;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "DATA")
-    private LocalDate data;
+    private Date data;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumn(name = "ID_PEDIDO", foreignKey = @ForeignKey(name = "FK_PEDIDOS_ITENS"))
     private Set<Item> itens = new HashSet<>();
+
+    @Column(name = "SITUACAO")
+    private SituacaoPedido situacao = EM_ABERTO;
 
     public Pedido() {
     }
@@ -53,11 +60,19 @@ public class Pedido {
         this.itens = itens;
     }
 
-    public String getData() {
-        return data.toString();
+    public Date getData() {
+        return data;
     }
 
-    public void setData(LocalDate data) {
+    public void setData(Date data) {
         this.data = data;
+    }
+
+    public SituacaoPedido getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(SituacaoPedido situacao) {
+        this.situacao = situacao;
     }
 }

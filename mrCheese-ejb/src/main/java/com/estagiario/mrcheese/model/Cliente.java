@@ -21,6 +21,12 @@ public class Cliente {
     @Column(name = "NOME", length = 255)
     private String nome;
 
+    @Column(name = "TELEFONE", length = 11)
+    private Long telefone;
+
+    @Column(name = "EMAIL")
+    private String email;
+
     public Cliente() {
     }
 
@@ -38,5 +44,21 @@ public class Cliente {
 
     public void setNome(String descricao) {
         this.nome = descricao;
+    }
+
+    public Long getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(Long telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

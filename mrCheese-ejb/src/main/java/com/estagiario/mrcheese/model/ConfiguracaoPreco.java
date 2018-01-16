@@ -23,4 +23,12 @@ public class ConfiguracaoPreco {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
+    }
 }
