@@ -19,15 +19,24 @@ public class ConfiguracaoPrecoResource {
 
     @GET
     public Response configuracaoPreco(){
-        return Response.ok(repository.findOne()).build();
+
+        return Response.ok(repository.atual()).build();
+    }
+
+    @POST
+    public Response create(final ConfiguracaoPreco configuracaoPreco){
+
+        final ConfiguracaoPreco persist = repository.persist(configuracaoPreco);
+
+        return Response.ok(persist).build();
+
     }
 
     @PUT
     @Path("{id}")
-    public Response update(@PathParam("id") Long id, ConfiguracaoPreco configuracaoPreco){
+    public Response update(@PathParam("id") final Long id, final ConfiguracaoPreco configuracaoPreco){
 
-
-        ConfiguracaoPreco merge = repository.merge(configuracaoPreco);
+        final ConfiguracaoPreco merge = repository.merge(configuracaoPreco);
 
         return Response.ok(merge).build();
 

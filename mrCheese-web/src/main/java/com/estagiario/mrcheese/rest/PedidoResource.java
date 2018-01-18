@@ -64,7 +64,15 @@ public class PedidoResource {
     @Path("/efetuar")
     public Response efetuar(final Pedido pedido) {
 
-        final Pedido efetuar = pedidoService.efetuar(pedido);
+        return Response.ok(pedidoService.efetuar(pedido)).build();
+
+    }
+
+    @PUT
+    @Path("/efetuar/{id}")
+    public Response alterar(@PathParam("id") final Long id, final Pedido pedido) {
+
+        final Pedido efetuar = pedidoService.merge(pedido);
 
         return Response.ok(efetuar).build();
 
