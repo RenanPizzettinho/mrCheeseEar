@@ -38,7 +38,6 @@ public class PedidoService {
     public Pedido cancelar(final Pedido pedido) {
 
         pedido.setSituacao(CANCELADO);
-        Pedido merge = pedidoRepository.merge(pedido);
 
         pedido.getItens().stream()
                 .map(Item::getQueijo)
@@ -48,8 +47,9 @@ public class PedidoService {
                 .map(Item::getId)
                 .forEach(itemPedidoService::remove);
 
+        pedido.getItens().clear();
 
-        return merge;
+        return pedidoRepository.merge(pedido);
 
     }
 
