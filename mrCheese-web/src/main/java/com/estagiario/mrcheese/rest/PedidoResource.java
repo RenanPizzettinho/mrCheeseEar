@@ -40,8 +40,6 @@ public class PedidoResource {
 
     }
 
-
-
     @GET
     @Path("/status")
     public Response status(@QueryParam("status") final SituacaoPedido situacaoPedido){

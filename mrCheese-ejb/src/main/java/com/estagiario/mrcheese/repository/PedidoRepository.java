@@ -33,7 +33,7 @@ public class PedidoRepository extends BasicRepository<Pedido, Long> {
 
     }
 
-    private List<Pedido> select(BooleanExpression eq) {
+    public List<Pedido> select(BooleanExpression eq) {
 
         return new JPAQueryFactory(entityManager)
                 .selectFrom(pedido)

@@ -2,11 +2,21 @@ package com.estagiario.mrcheese.service;
 
 import com.estagiario.mrcheese.model.Item;
 import com.estagiario.mrcheese.model.Pedido;
+import com.estagiario.mrcheese.model.SituacaoPedido;
 import com.estagiario.mrcheese.repository.PedidoRepository;
+import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+
+import static com.estagiario.mrcheese.model.QPedido.pedido;
 import static com.estagiario.mrcheese.model.SituacaoPedido.*;
 
 @Stateless
@@ -20,6 +30,9 @@ public class PedidoService {
 
     @Inject
     private ItemPedidoService itemPedidoService;
+
+    @Inject
+    private EntityManager entityManager;
 
     public Pedido efetuar(final Pedido pedido) {
 
@@ -131,4 +144,6 @@ public class PedidoService {
         });
 
     }
+
 }
+
